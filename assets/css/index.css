@@ -1,0 +1,43 @@
+.layui-footer {
+  text-align: center;
+  font-size: 12px;
+  
+}
+
+.layui-nav-item a {
+  margin:0 4px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* 为了去除加载时的动画去掉的,根据需要 */
+a {
+  transition: none !important;
+  /* z-index: 999; */
+}
+
+.layui-side-scroll .userInfo {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  padding-right: 35px;
+  font-size: 12px;
+  /* 禁止选中 */
+  user-select: none;
+  border-bottom: solid 1px #000;
+}
+
+.avater {
+  display: inline-block;
+  background-color: aquamarine;
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 8px;
+}

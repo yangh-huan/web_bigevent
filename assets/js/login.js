@@ -61,7 +61,7 @@ $(document).ready(function(){
     // $("layui-btn-reg").click(function(e){
       e.preventDefault();
       
-      $.post("http://www.liulongbin.top:3007/api/login",
+      $.post("/api/login",
       {
         username:$(".username-login").val(),
         password:$(".password-login").val()
@@ -99,7 +99,7 @@ $(document).ready(function(){
     
     if ($(".password-reg").val() === $(".passwordcheck").val()) {
 
-      $.post("http://www.liulongbin.top:3007/api/reguser",
+      $.post("/api/reguser",
     {
       username: usernamereg,
       password: passwordreg
