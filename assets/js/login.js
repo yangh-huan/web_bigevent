@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  console.log(layui);
+  // console.log(layui);
   //layui的弹出层
   // layui.use('layer', function(){
     var layer = layui.layer;

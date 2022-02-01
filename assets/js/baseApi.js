@@ -17,7 +17,7 @@ $.ajaxPrefilter(function(option) {
       //控制用户权限，获取用户信息，判断是否含有token
       
   option.complete= function (res) {
-    console.log(res);
+    // console.log(res);
     //在complete中可以使用respenseJSON拿到服务器相应回的数
     if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
     // 1. 强制清空 token

@@ -1,4 +1,9 @@
-$(document).ready(function(){
+// 在使用layui渲染页面时，由于ajax的请求数据是异步请求，所以页面首先加载dom元素，加载完了之后ajax的数据才会返回，这就导致页面中用户信息的二次加载，会根据用户的实际信息进行判断应当如何加载，这时候页面会进行刷新，所以就出现一个闪动问题
+
+
+$(function(){
+  
+  // console.log($);
   // var token =localStorage.getItem('token')  || ''
   // console.log(token);
   getUserInfo()
@@ -12,7 +17,7 @@ $(document).ready(function(){
       //   Authorization:token
       // },
       success: function(res){
-        console.log(res);
+        // console.log(res);
 
         if (res.status !== 0) {
           // console.log(res.message);
@@ -25,23 +30,6 @@ $(document).ready(function(){
         }
       },
 
-      //无论成功或者失败，$.ajax()都会调用complete回调函数,其中服务器的参数与success略有不同
-      //控制用户权限，获取用户信息，判断是否含有token
-      
-      complete: function (res) {
-        console.log(res);
-        //在complete中可以使用respenseJSON拿到服务器相应回的数据
-
-        if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-        // 1. 强制清空 token
-        localStorage.removeItem('token')
-        // 2. 强制跳转到登录页面
-        location.href = '/login.html'
-      }
-        
-      }
-
-      //---假token并不生效---
     });
   }
 
@@ -52,23 +40,32 @@ $(document).ready(function(){
     $('.welcome').html('欢迎&nbsp&nbsp'+uname)
 
     if (user.user_pic) {
-      // $('.layui-nav-img').attr({src:user.user_pic}).show()
-      $('.layui-nav-img').attr({src:user.user_pic})
+      // $('.layui-nav-img').attr({src:user.user_pic})也可以，但是为了解决闪动问题，页面中display都设置为none了，所以要加.show()
+      $('.layui-nav-img').attr({src:user.user_pic}).show()
+      
       $('.avater').hide()
     } else {
       $('.layui-nav-img').hide()
 
       //首字母/汉字 转大写
       var first= uname[0].toUpperCase()
-      // $('.avater').text(first).show()
-      $('.avater').text(first) 
+      $('.avater').text(first).show()
+      // $('.avater').text(first) 
     }
   }
 
   //退出功能
   $('.logout').on('click',function() {
     console.log('点击了退出');
-    localStorage.removeItem('token')
+    layer.confirm('确认退出？', {icon: 3, title:'提示'}, function(index){
+      //do something
+      localStorage.removeItem('token')
+      location.href='login.html'
+      
+      layer.close(index);
+    });
+
+    
     getUserInfo()
   })
 
